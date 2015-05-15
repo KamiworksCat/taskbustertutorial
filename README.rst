@@ -1,11 +1,5 @@
-.. TaskBuster documentation master file, created by
-   sphinx-quickstart on Fri May 15 15:59:45 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to TaskBuster's documentation!
 ======================================
-
 This is an awesome **Django Project Boilerplate**!!
 With this code you can start a *complex* Django Project
 very quickly, with just a few steps!
@@ -23,22 +17,3 @@ TaskBuster has been done, and even do it yourself if you want to!!
 .. |taskbuster_tutorial| raw:: html
     <a href="http://marinamele.com/taskbuster-django-tutorial"
     target="_blank">TaskBuster Django Tutorial</a>
-To start using the Boilerplate, check out the :doc:`requirements`
-and next the :doc:`quick_start`.
-
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
-    requirements
-    quick_start
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
