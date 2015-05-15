@@ -3,11 +3,11 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    <Cat> -- <Lazy> -- <@hirumakyo>
 
 # THANKS
 
-    <name>
+    Marinamele tutorial
 
 # TECHNOLOGY COLOPHON
 

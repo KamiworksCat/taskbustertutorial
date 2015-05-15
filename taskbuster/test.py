@@ -1,9 +1,11 @@
+from django.utils.translation import activate
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
 class TestHomePage(TestCase):
 
     def test_uses_index_template(self):
+        activate('en')
         response = self.client.get(reverse("home"))
         self.assertTemplateUsed(response, "taskbuster/index.html")
 
