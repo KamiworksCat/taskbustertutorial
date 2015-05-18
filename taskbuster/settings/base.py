@@ -22,6 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'gjyhxn)ylsvrinv8j0vw*w6hm=fg#bkrmt+24l0b7o_eru%1n0'
 
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
 
 from django.utils.translation import ugettext_lazy as _
 LANGUAGES = (
@@ -47,6 +49,13 @@ def get_env_variable(var_name):
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
 
+AUTHENTICATION_BACKENDS = (
+    # Default backend -- used to login by username in Django admin
+    "django.contrib.auth.backends.ModelBackend",
+    # 'aullauth' specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 ALLOWED_HOSTS = []
 
 
@@ -60,6 +69,18 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
+
+INSTALLED_APPS += (
+    #The Django sites framework is required
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # Login via Google
+    'allauth.socialaccount.providers.google',
+)
+
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -89,10 +110,23 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
+                'allauth.account.context_processors.account',
+                'allauth.socialaccount.context_processors.socialaccount',
             ],
         },
     },
 ]
+
+"""
+TEMPLATE_CONTEXT_PROCESSORS += (
+    # Required by allauth template tag
+    "django.core.context_processors.request",
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+"""
 
 WSGI_APPLICATION = 'taskbuster.wsgi.application'
 
@@ -102,8 +136,12 @@ WSGI_APPLICATION = 'taskbuster.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'taskbuster_db',
+        'USER': 'cat',
+        'PASSWORD': 'cat',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -130,3 +168,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+# Customized authorization process
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "none"
+SOCIAL_ACCOUNT_QUERY_EMAIL = True
+LOGIN_REDIRECT_URL = "/"

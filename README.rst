@@ -14,6 +14,6 @@ Some of the TaskBuster Django Project Boilerplate functionalities are:
 Moreover, you can learn how to create this boilerplate **step by step**
 in the |taskbuster_tutorial|. There you can learn, step by step, how
 TaskBuster has been done, and even do it yourself if you want to!!
-.. |taskbuster_tutorial| raw:: html
+taskbuster_tutorial
     <a href="http://marinamele.com/taskbuster-django-tutorial"
     target="_blank">TaskBuster Django Tutorial</a>
